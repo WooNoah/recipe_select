@@ -1,8 +1,8 @@
 import {
   parseRecipeMarkdown,
   isWinterDate,
-  buildCandidates,
-  drawTwoDishes,
+  buildSectionCandidates,
+  drawMenuSections,
 } from './menuLogic.mjs';
 
 const state = {
@@ -14,7 +14,8 @@ const statusEl = document.querySelector('[data-role="status"]');
 const errorEl = document.querySelector('[data-role="error"]');
 const drawButton = document.querySelector('[data-role="draw-button"]');
 const resultSection = document.querySelector('[data-role="result-section"]');
-const resultEls = Array.from(document.querySelectorAll('[data-role="dish"]'));
+const resultGridEl = document.querySelector('[data-role="dish-grid"]');
+const dishTemplateEl = document.querySelector('[data-role="dish-template"]');
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('zh-CN', {
@@ -35,18 +36,19 @@ function setError(message) {
   errorEl.textContent = message ?? '';
 }
 
-function renderResult(dishes) {
-  dishes.forEach((dish, index) => {
-    const el = resultEls[index];
-    el.querySelector('[data-role="dish-category"]').textContent =
-      dish.category === 'soup' ? '汤品' : '经典肉类';
-    el.querySelector('[data-role="dish-name"]').textContent = dish.name;
-    el.classList.remove('dish-card--animate');
-    void el.offsetWidth;
-    el.classList.add('dish-card--animate');
+function renderResult(draws) {
+  resultGridEl.replaceChildren();
+
+  draws.forEach((entry, index) => {
+    const cardEl = dishTemplateEl.content.firstElementChild.cloneNode(true);
+    cardEl.style.setProperty('--card-index', String(index));
+    cardEl.querySelector('[data-role="dish-category"]').textContent = entry.sectionTitle;
+    cardEl.querySelector('[data-role="dish-name"]').textContent = entry.dish.name;
+    cardEl.classList.add('dish-card--animate');
+    resultGridEl.append(cardEl);
   });
 
-  resultSection.hidden = false;
+  resultSection.hidden = draws.length === 0;
 }
 
 async function loadMenu() {
@@ -69,9 +71,14 @@ function drawMenu() {
   const today = new Date();
   setStatus(today);
 
-  const candidates = buildCandidates(state.menu, today);
-  const dishes = drawTwoDishes(candidates);
-  renderResult(dishes);
+  const sections = buildSectionCandidates(state.menu, today);
+  const draws = drawMenuSections(sections);
+
+  if (draws.length === 0) {
+    throw new Error('当前没有可用菜谱可供抽取。');
+  }
+
+  renderResult(draws);
 }
 
 async function init() {
@@ -88,7 +95,7 @@ async function init() {
   try {
     await loadMenu();
     drawButton.disabled = false;
-    drawButton.textContent = '随机抽两道菜';
+    drawButton.textContent = '随机抽今日菜单';
   } catch (error) {
     setError(error instanceof Error ? error.message : '读取菜谱失败。');
     drawButton.disabled = true;
@@ -97,7 +104,13 @@ async function init() {
 
 drawButton.addEventListener('click', () => {
   setError(null);
-  drawMenu();
+
+  try {
+    drawMenu();
+  } catch (error) {
+    resultSection.hidden = true;
+    setError(error instanceof Error ? error.message : '随机抽取失败。');
+  }
 });
 
 init();

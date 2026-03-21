@@ -176,7 +176,7 @@ h2 {
 
 .dish-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
 
@@ -196,10 +196,7 @@ h2 {
 
 .dish-card--animate {
   animation: reveal 420ms ease both;
-}
-
-.dish-card:nth-child(2).dish-card--animate {
-  animation-delay: 70ms;
+  animation-delay: calc(var(--card-index, 0) * 70ms);
 }
 
 .dish-category {

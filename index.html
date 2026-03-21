@@ -12,7 +12,7 @@
         <p class="eyebrow">Daily Recipe Menu</p>
         <h1>今天吃什么</h1>
         <p class="intro">
-          从你的菜谱里随机抽两道菜，默认避免抽到两碗汤。冬日限定菜会按日期自动参与或退出抽取。
+          从你的菜单分类里随机抽取今日菜单。经典肉类和汤品会按主食材权重搭配，后续新增分类后页面也会自动展示。
         </p>
 
         <div class="toolbar">
@@ -31,16 +31,13 @@
           <h2>今日菜单</h2>
         </div>
 
-        <div class="dish-grid">
-          <article class="dish-card" data-role="dish">
+        <div class="dish-grid" data-role="dish-grid"></div>
+        <template data-role="dish-template">
+          <article class="dish-card">
             <p class="dish-category" data-role="dish-category"></p>
             <h3 class="dish-name" data-role="dish-name"></h3>
           </article>
-          <article class="dish-card" data-role="dish">
-            <p class="dish-category" data-role="dish-category"></p>
-            <h3 class="dish-name" data-role="dish-name"></h3>
-          </article>
-        </div>
+        </template>
       </section>
     </main>
 
