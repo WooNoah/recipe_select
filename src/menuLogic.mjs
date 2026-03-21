@@ -3,6 +3,10 @@ import {
   defaultProteinPairWeight,
 } from './menuConfig.mjs';
 
+// 最近抽中的经典肉类，FIFO 队列，最多保存 5 个菜名
+const recentlyPickedMeats = [];
+const MAX_RECENT_MEATS = 5;
+
 const WINTER_ONLY_MARKER = '（冬日限定）';
 
 const KNOWN_SECTION_RULES = {
@@ -201,8 +205,20 @@ export function drawMenuSections(sections, randomFn = Math.random) {
     let dish = null;
 
     if (section.id === 'classic') {
-      dish = pickOne(section.items, randomFn);
+      // 过滤掉最近 5 次抽中的菜
+      const availableMeats = section.items.filter(
+        dish => !recentlyPickedMeats.includes(dish.name)
+      );
+      // 如果所有菜都被过滤了（理论上不会发生，因为总数量 > 5），使用全部候选
+      const candidates = availableMeats.length > 0 ? availableMeats : section.items;
+      dish = pickOne(candidates, randomFn);
       classicDish = dish;
+
+      // 添加到最近抽中队列，保持最大长度
+      recentlyPickedMeats.push(dish.name);
+      if (recentlyPickedMeats.length > MAX_RECENT_MEATS) {
+        recentlyPickedMeats.shift();
+      }
     } else if (section.id === 'soup' && classicDish) {
       const weightedPool = section.items
         .map((candidate) => ({
