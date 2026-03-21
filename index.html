@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今天吃什么</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero-panel">
+        <p class="eyebrow">Daily Recipe Menu</p>
+        <h1>今天吃什么</h1>
+        <p class="intro">
+          从你的菜谱里随机抽两道菜，默认避免抽到两碗汤。冬日限定菜会按日期自动参与或退出抽取。
+        </p>
+
+        <div class="toolbar">
+          <button class="draw-button" type="button" data-role="draw-button" disabled>
+            正在读取菜谱...
+          </button>
+          <p class="status-line" data-role="status"></p>
+        </div>
+
+        <p class="error-box" data-role="error" hidden></p>
+      </section>
+
+      <section class="result-panel" data-role="result-section" hidden>
+        <div class="result-heading">
+          <p class="eyebrow">Today’s Draw</p>
+          <h2>今日菜单</h2>
+        </div>
+
+        <div class="dish-grid">
+          <article class="dish-card" data-role="dish">
+            <p class="dish-category" data-role="dish-category"></p>
+            <h3 class="dish-name" data-role="dish-name"></h3>
+          </article>
+          <article class="dish-card" data-role="dish">
+            <p class="dish-category" data-role="dish-category"></p>
+            <h3 class="dish-name" data-role="dish-name"></h3>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>
