@@ -21,7 +21,7 @@ test('parseRecipeMarkdown preserves available sections and their metadata', () =
   const menu = parseRecipeMarkdown(`
 # 菜谱
 
-## 1. 经典肉类
+## 1. 每日主菜
 
 1. 红烧肉 | protein=猪肉
 
@@ -39,7 +39,7 @@ test('parseRecipeMarkdown preserves available sections and their metadata', () =
 `);
 
   assert.deepEqual(menu.sections.map((section) => section.title), [
-    '经典肉类',
+    '每日主菜',
     '汤品',
     '素菜类',
     '甜品类',
@@ -62,7 +62,7 @@ test('buildSectionCandidates keeps winter-only filtering and allows missing opti
   const menu = parseRecipeMarkdown(`
 # 菜谱
 
-## 1. 经典肉类
+## 1. 每日主菜
 
 1. 红烧肉 | protein=猪肉
 
@@ -84,7 +84,7 @@ test('drawMenuSections draws one result per available section in order', () => {
   const menu = parseRecipeMarkdown(`
 # 菜谱
 
-## 1. 经典肉类
+## 1. 每日主菜
 
 1. 红烧肉 | protein=猪肉
 
@@ -108,7 +108,7 @@ test('drawMenuSections draws one result per available section in order', () => {
   const draws = drawMenuSections(sections, createRandomSequence([0, 0.9, 0.4, 0.7]));
 
   assert.deepEqual(draws.map((entry) => entry.sectionTitle), [
-    '经典肉类',
+    '每日主菜',
     '汤品',
     '素菜类',
     '凉拌菜类',
@@ -123,7 +123,7 @@ test('drawMenuSections keeps forbidden fish and shellfish soup pairings blocked'
   const menu = parseRecipeMarkdown(`
 # 菜谱
 
-## 1. 经典肉类
+## 1. 每日主菜
 
 1. 番茄鱼 | protein=鱼类
 
@@ -145,7 +145,7 @@ test('drawMenuSections includes unknown sections as independent draws', () => {
   const menu = parseRecipeMarkdown(`
 # 菜谱
 
-## 1. 经典肉类
+## 1. 每日主菜
 
 1. 红烧肉 | protein=猪肉
 
@@ -162,6 +162,6 @@ test('drawMenuSections includes unknown sections as independent draws', () => {
   const sections = buildSectionCandidates(menu, new Date('2026-03-22T12:00:00Z'));
   const draws = drawMenuSections(sections, createRandomSequence([0, 0, 0.8]));
 
-  assert.deepEqual(draws.map((entry) => entry.sectionTitle), ['经典肉类', '汤品', '宵夜类']);
+  assert.deepEqual(draws.map((entry) => entry.sectionTitle), ['每日主菜', '汤品', '宵夜类']);
   assert.equal(draws[2].dish.name, '炒饭');
 });

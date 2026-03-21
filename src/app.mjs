@@ -39,10 +39,25 @@ function setError(message) {
 function renderResult(draws) {
   resultGridEl.replaceChildren();
 
+  // 给小炒类计数，第一道显示"小炒菜 1"，第二道显示"小炒菜 2"
+  let stirFryCount = 0;
+
   draws.forEach((entry, index) => {
     const cardEl = dishTemplateEl.content.firstElementChild.cloneNode(true);
     cardEl.style.setProperty('--card-index', String(index));
-    cardEl.querySelector('[data-role="dish-category"]').textContent = entry.sectionTitle;
+
+    let categoryText;
+    if (entry.sectionId === 'stirFry') {
+      stirFryCount++;
+      categoryText = `小炒菜 ${stirFryCount}`;
+    } else if (entry.sectionId === 'coldDish') {
+      categoryText = '凉拌菜';
+    } else {
+      // 其他分类：如果有 veg 元数据就显示 veg，否则显示分类名称
+      categoryText = entry.dish.metadata.veg ?? entry.sectionTitle;
+    }
+
+    cardEl.querySelector('[data-role="dish-category"]').textContent = categoryText;
     cardEl.querySelector('[data-role="dish-name"]').textContent = entry.dish.name;
     cardEl.classList.add('dish-card--animate');
     resultGridEl.append(cardEl);

@@ -10,7 +10,7 @@ const MAX_RECENT_MEATS = 5;
 const WINTER_ONLY_MARKER = '（冬日限定）';
 
 const KNOWN_SECTION_RULES = {
-  经典肉类: {
+  每日主菜: {
     id: 'classic',
     requiredMetadata: ['protein'],
   },
@@ -20,6 +20,10 @@ const KNOWN_SECTION_RULES = {
   },
   素菜类: {
     id: 'vegetarian',
+    requiredMetadata: [],
+  },
+  小炒类: {
+    id: 'stirFry',
     requiredMetadata: [],
   },
   凉拌菜类: {
@@ -232,6 +236,32 @@ export function drawMenuSections(sections, randomFn = Math.random) {
       }
 
       dish = pickWeighted(weightedPool, randomFn);
+    } else if (section.id === 'stirFry') {
+      // 小炒类：抽两道，不能相同主要食材
+      if (section.items.length >= 2) {
+        // 抽第一道
+        const firstDish = pickOne(section.items, randomFn);
+        // 抽第二道，必须和第一道不同的 veg
+        const availableSecond = section.items.filter(
+          item => item.metadata.veg !== firstDish.metadata.veg
+        );
+        const secondDish = pickOne(availableSecond, randomFn);
+        // 两道都加入结果
+        draws.push({
+          sectionId: section.id,
+          sectionTitle: section.title,
+          dish: firstDish,
+        });
+        draws.push({
+          sectionId: section.id,
+          sectionTitle: section.title,
+          dish: secondDish,
+        });
+        continue;
+      } else {
+        // 少于两道，抽一道
+        dish = pickOne(section.items, randomFn);
+      }
     } else {
       dish = pickOne(section.items, randomFn);
     }
