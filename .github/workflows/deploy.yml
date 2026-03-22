@@ -26,9 +26,10 @@ jobs:
         with:
           node-version: 18
           cache: npm
+          registry-url: https://registry.npmmirror.com
 
       - name: Install dependencies
-        run: npm install --registry=https://registry.npmmirror.com
+        run: npm ci
 
       - name: Convert menu data
         run: npm run convert:menu
