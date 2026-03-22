@@ -1,0 +1,514 @@
+{
+  "sections": [
+    {
+      "id": "classic",
+      "title": "每日主菜",
+      "items": [
+        {
+          "name": "红烧肉（百叶结、笋、鸡蛋、油豆腐）",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "油焖鸡",
+          "metadata": {
+            "protein": "鸡肉"
+          }
+        },
+        {
+          "name": "番茄牛腩",
+          "metadata": {
+            "protein": "牛肉"
+          }
+        },
+        {
+          "name": "话梅排骨",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "酸菜炖粉条",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "红烧猪蹄",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "可乐鸡翅",
+          "metadata": {
+            "protein": "鸡肉"
+          }
+        },
+        {
+          "name": "溜肥肠",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "酸汤肥牛",
+          "metadata": {
+            "protein": "牛肉"
+          }
+        },
+        {
+          "name": "鸡翅鸡爪虾蟹煲",
+          "metadata": {
+            "protein": "混合"
+          }
+        },
+        {
+          "name": "香煎羊排",
+          "metadata": {
+            "protein": "羊肉"
+          }
+        },
+        {
+          "name": "腐乳排骨",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "水煮肉片",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "番茄鱼",
+          "metadata": {
+            "protein": "鱼类"
+          }
+        },
+        {
+          "name": "蒜蓉粉丝虾",
+          "metadata": {
+            "protein": "甲壳海鲜"
+          }
+        },
+        {
+          "name": "麻辣香锅",
+          "metadata": {
+            "protein": "混合"
+          }
+        },
+        {
+          "name": "河南烩菜",
+          "metadata": {
+            "protein": "混合"
+          }
+        }
+      ]
+    },
+    {
+      "id": "soup",
+      "title": "汤品",
+      "items": [
+        {
+          "name": "虾仁豆腐汤",
+          "metadata": {
+            "protein": "甲壳海鲜"
+          }
+        },
+        {
+          "name": "滑肉汤",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "猪肚鸡汤",
+          "metadata": {
+            "protein": "混合"
+          }
+        },
+        {
+          "name": "排骨汤",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "羊排汤（冬日限定）",
+          "metadata": {
+            "protein": "羊肉"
+          }
+        },
+        {
+          "name": "鱼汤",
+          "metadata": {
+            "protein": "鱼类"
+          }
+        },
+        {
+          "name": "荷包蛋汤",
+          "metadata": {
+            "protein": "蛋类"
+          }
+        },
+        {
+          "name": "腌笃鲜",
+          "metadata": {
+            "protein": "猪肉"
+          }
+        },
+        {
+          "name": "番茄蛋汤",
+          "metadata": {
+            "protein": "蛋类"
+          }
+        },
+        {
+          "name": "罗宋汤",
+          "metadata": {
+            "protein": "牛肉"
+          }
+        }
+      ]
+    },
+    {
+      "id": "stirFry",
+      "title": "小炒类",
+      "items": [
+        {
+          "name": "油焖笋",
+          "metadata": {
+            "veg": "笋"
+          }
+        },
+        {
+          "name": "番茄炒蛋",
+          "metadata": {
+            "veg": "番茄 鸡蛋"
+          }
+        },
+        {
+          "name": "青椒炒鸡蛋",
+          "metadata": {
+            "veg": "辣椒 鸡蛋"
+          }
+        },
+        {
+          "name": "白萝卜炒肉",
+          "metadata": {
+            "veg": "白萝卜"
+          }
+        },
+        {
+          "name": "杭白菜",
+          "metadata": {
+            "veg": "杭白菜"
+          }
+        },
+        {
+          "name": "茭白炒肉",
+          "metadata": {
+            "veg": "茭白"
+          }
+        },
+        {
+          "name": "蒜苔炒肉",
+          "metadata": {
+            "veg": "蒜苔"
+          }
+        },
+        {
+          "name": "酒香草头",
+          "metadata": {
+            "veg": "草头"
+          }
+        },
+        {
+          "name": "丝瓜炒鸡蛋",
+          "metadata": {
+            "veg": "丝瓜 鸡蛋"
+          }
+        },
+        {
+          "name": "西兰花",
+          "metadata": {
+            "veg": "西兰花"
+          }
+        },
+        {
+          "name": "花菜炒肉",
+          "metadata": {
+            "veg": "花菜"
+          }
+        },
+        {
+          "name": "鱼香茄子",
+          "metadata": {
+            "veg": "茄子"
+          }
+        },
+        {
+          "name": "红烧茄子",
+          "metadata": {
+            "veg": "茄子"
+          }
+        },
+        {
+          "name": "四季豆炒肉",
+          "metadata": {
+            "veg": "四季豆"
+          }
+        },
+        {
+          "name": "清炒西葫芦",
+          "metadata": {
+            "veg": "西葫芦"
+          }
+        },
+        {
+          "name": "炒茼蒿",
+          "metadata": {
+            "veg": "茼蒿"
+          }
+        },
+        {
+          "name": "清炒豌豆尖",
+          "metadata": {
+            "veg": "豌豆尖"
+          }
+        },
+        {
+          "name": "炒空心菜",
+          "metadata": {
+            "veg": "空心菜"
+          }
+        },
+        {
+          "name": "炒苋菜",
+          "metadata": {
+            "veg": "苋菜"
+          }
+        },
+        {
+          "name": "芹菜香干",
+          "metadata": {
+            "veg": "芹菜"
+          }
+        },
+        {
+          "name": "青菜豆腐",
+          "metadata": {
+            "veg": "青菜"
+          }
+        },
+        {
+          "name": "清炒荷兰豆",
+          "metadata": {
+            "veg": "荷兰豆"
+          }
+        },
+        {
+          "name": "平菇炒肉",
+          "metadata": {
+            "veg": "平菇"
+          }
+        },
+        {
+          "name": "冬瓜炒肉",
+          "metadata": {
+            "veg": "冬瓜"
+          }
+        },
+        {
+          "name": "金针菇炒肉",
+          "metadata": {
+            "veg": "金针菇"
+          }
+        },
+        {
+          "name": "毛豆炒肉",
+          "metadata": {
+            "veg": "毛豆"
+          }
+        },
+        {
+          "name": "豇豆炒肉",
+          "metadata": {
+            "veg": "豇豆"
+          }
+        },
+        {
+          "name": "菠菜炒鸡蛋",
+          "metadata": {
+            "veg": "菠菜 鸡蛋"
+          }
+        },
+        {
+          "name": "口蘑炒肉",
+          "metadata": {
+            "veg": "口蘑"
+          }
+        },
+        {
+          "name": "韭菜炒鸡蛋",
+          "metadata": {
+            "veg": "韭菜 鸡蛋"
+          }
+        },
+        {
+          "name": "香菇肉丝",
+          "metadata": {
+            "veg": "香菇"
+          }
+        },
+        {
+          "name": "炸臭豆腐",
+          "metadata": {
+            "veg": "臭豆腐"
+          }
+        },
+        {
+          "name": "清炒藕片",
+          "metadata": {
+            "veg": "藕"
+          }
+        },
+        {
+          "name": "鱼香肉丝",
+          "metadata": {
+            "veg": "胡萝卜、猪肉、木耳"
+          }
+        },
+        {
+          "name": "番茄粉丝娃娃菜",
+          "metadata": {
+            "veg": "娃娃菜"
+          }
+        },
+        {
+          "name": "洋葱炒鸡蛋",
+          "metadata": {
+            "veg": "洋葱 鸡蛋"
+          }
+        },
+        {
+          "name": "清炒莴笋",
+          "metadata": {
+            "veg": "莴笋"
+          }
+        },
+        {
+          "name": "酸辣土豆丝",
+          "metadata": {
+            "veg": "土豆"
+          }
+        },
+        {
+          "name": "土豆丝炒肉片",
+          "metadata": {
+            "veg": "土豆"
+          }
+        },
+        {
+          "name": "黄瓜炒鸡蛋",
+          "metadata": {
+            "veg": "黄瓜 鸡蛋"
+          }
+        },
+        {
+          "name": "农家一碗香",
+          "metadata": {
+            "veg": "猪肉、辣椒、鸡蛋"
+          }
+        },
+        {
+          "name": "酸辣绿豆芽",
+          "metadata": {
+            "veg": "豆芽"
+          }
+        }
+      ]
+    },
+    {
+      "id": "coldDish",
+      "title": "凉拌菜类",
+      "items": [
+        {
+          "name": "凉拌黄瓜",
+          "metadata": {
+            "veg": "黄瓜"
+          }
+        },
+        {
+          "name": "凉拌木耳",
+          "metadata": {
+            "veg": "木耳"
+          }
+        },
+        {
+          "name": "夫妻肺片",
+          "metadata": {
+            "veg": "牛肉"
+          }
+        },
+        {
+          "name": "黄瓜变蛋",
+          "metadata": {
+            "veg": "黄瓜 变蛋"
+          }
+        },
+        {
+          "name": "五彩大拉皮",
+          "metadata": {
+            "veg": "拉皮"
+          }
+        },
+        {
+          "name": "凉拌莴苣",
+          "metadata": {
+            "veg": "莴苣"
+          }
+        },
+        {
+          "name": "麻辣鸡丝",
+          "metadata": {
+            "veg": "鸡肉"
+          }
+        },
+        {
+          "name": "凉拌三丝（粉丝、胡萝卜、豆皮、黄瓜）",
+          "metadata": {
+            "veg": "粉丝 胡萝卜 豆皮 黄瓜"
+          }
+        },
+        {
+          "name": "凉皮",
+          "metadata": {
+            "veg": "凉皮"
+          }
+        },
+        {
+          "name": "米皮",
+          "metadata": {
+            "veg": "米皮"
+          }
+        },
+        {
+          "name": "豆皮金针菇",
+          "metadata": {
+            "veg": "豆皮 金针菇"
+          }
+        },
+        {
+          "name": "凉拌豆干",
+          "metadata": {
+            "veg": "豆干"
+          }
+        }
+      ]
+    }
+  ]
+}

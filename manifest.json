@@ -1,0 +1,32 @@
+{
+  "name": "菜谱抽签",
+  "appid": "__UNI__RECIPE_SELECT",
+  "description": "随机抽取今日菜谱",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "app-plus": {
+    "usingComponents": true
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false,
+      "enhance": true
+    },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "位置信息"
+      }
+    }
+  },
+  "h5": {
+    "router": {
+      "mode": "history"
+    },
+    "publicPath": "/"
+  },
+  "uniStatistics": {
+    "enable": false
+  }
+}
