@@ -1,12 +1,14 @@
 // scripts/convert-menu.js
-const fs = require('fs');
-const path = require('path');
-const { parseRecipeMarkdown } = require('../src/utils/menuLogic');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { parseRecipeMarkdown } from '../src/utils/menuLogic.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const mdPath = path.join(__dirname, '../recipe_menu.md');
 const outputPath = path.join(__dirname, '../src/data/recipeMenu.json');
 
-// Check if recipe_menu.md exists
 if (!fs.existsSync(mdPath)) {
   console.error('Error: recipe_menu.md not found at', mdPath);
   process.exit(1);
