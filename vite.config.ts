@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
+// @ts-ignore
 import UniPlugin from '@dcloudio/vite-plugin-uni'
-const uni = (UniPlugin as any).default || UniPlugin
+
+const uni = typeof UniPlugin === 'function' ? UniPlugin : UniPlugin.default
 
 const isProduction = process.env.NODE_ENV === 'production'
 

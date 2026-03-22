@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <page-meta background-color="#f5f5f5" />
+  <app />
 </template>
 
 <style>
