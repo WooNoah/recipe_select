@@ -6,19 +6,82 @@ The app reads `recipe_menu.md` at build time (converted to JSON), builds menu ca
 
 ## Project structure
 
+### Quick overview
+
 - `index.html`: uni-app H5 entry template
 - `src/main.js`: uni-app app entry
 - `src/App.vue`: root component
-- `src/pages/index/index.vue`: main page (UI + styles)
+- `src/pages/index/index.vue`: main page (UI + styles + interaction)
 - `src/manifest.json`: uni-app app config (appid, H5 publicPath, etc.)
 - `src/pages.json`: uni-app page routing config
-- `src/utils/menuLogic.js`: markdown parsing, candidate building, and draw rules
-- `src/utils/menuConfig.js`: pairing weight configuration
-- `src/data/recipeMenu.json`: converted menu data (generated, do not edit manually)
-- `recipe_menu.md`: menu source data (edit this)
+- `src/utils/menuLogic.js`: core logic - markdown parsing, candidate building, draw rules
+- `src/utils/menuConfig.js`: pairing weight configuration (adjust rules here)
+- `src/data/recipeMenu.json`: converted menu data **(generated, do not edit manually)**
+- `recipe_menu.md`: menu source data **(edit this to add/remove dishes)**
 - `scripts/convert-menu.js`: converts `recipe_menu.md` to `recipeMenu.json`
 - `tests/menuLogic.test.mjs`: logic tests
 - `.github/workflows/deploy.yml`: GitHub Pages deployment workflow
+
+### Full tree
+
+```
+.
+├── README.md
+├── index.html
+├── recipe_menu.md
+├── pages.json
+├── manifest.json
+├── project.config.json
+├── vite.config.ts
+├── package.json
+├── src/
+│   ├── main.js
+│   ├── App.vue
+│   ├── manifest.json
+│   ├── pages.json
+│   ├── pages/
+│   │   └── index/
+│   │       └── index.vue
+│   ├── data/
+│   │   └── recipeMenu.json
+│   └── utils/
+│       ├── menuConfig.js
+│       └── menuLogic.js
+├── scripts/
+│   └── convert-menu.js
+├── tests/
+│   └── menuLogic.test.mjs
+├── docs/
+│   └── plans/
+│       └── ... (historical design docs)
+└── dist/
+    └── build/
+        └── h5/ (built output)
+```
+
+### Data flow
+
+```
+Edit: recipe_menu.md (Markdown)
+   ↓
+Run: npm run convert:menu
+   ↓
+Script: scripts/convert-menu.js
+   ↓
+Parse: uses parseRecipeMarkdown() from menuLogic.js
+   ↓
+Output: src/data/recipeMenu.json (preprocessed JSON)
+   ↓
+App: imports preprocessed JSON and draws according to rules
+```
+
+### Core architecture layers
+
+| File | Responsibility |
+|------|----------------|
+| `menuLogic.js` | **Algorithm core**<br>• Markdown parsing<br>• Candidate dish generation<br>• Seasonal filtering (winter only)<br>• Weighted random drawing<br>• Avoid recently drawn rule |
+| `menuConfig.js` | **Configuration center**<br>• `proteinPairWeights` - main → soup pairing weight matrix<br>• `vegetablePairWeights` - reserved for vegetable pairing<br>• Default value configurations |
+| `index.vue` | **Presentation layer**<br>• Vue component state management<br>• User interaction<br>• Result rendering<br>• Embedded complete styling |
 
 ## Local development
 
@@ -108,10 +171,42 @@ Example:
 
 Protein pairing weights live in `src/utils/menuConfig.js`.
 
-- `经典肉类` is drawn first
-- `汤品` is drawn second using the `proteinPairWeights` matrix
+- `经典肉类` (daily main dish) is drawn first
+- `汤品` (soup) is drawn second using the `proteinPairWeights` matrix
 - Weight `0` means the pairing is forbidden
 - Higher weights make a pairing more likely
+
+## Drawing rules by category
+
+| Category | id | Special Rule |
+|----------|-----|--------------|
+| 每日主菜 (Daily Main) | `classic` | Avoid the 5 most recently drawn dishes to prevent repetition |
+| 汤品 (Soup) | `soup` | Weighted drawing based on the main dish's protein group |
+| 小炒类 (Stir-fry) | `stirFry` | Draw 2 dishes, requires different vegetable groups |
+| 凉拌菜类 (Cold Dish) | `coldDish` | Draw 1 dish, no special rules |
+
+Adding a new category automatically works - the UI will render a new result card automatically.
+
+**Detailed rules**:
+
+1. **Daily Main Dish**:
+   - Draw one randomly
+   - Automatically avoids the 5 most recently drawn dishes
+   - Records history to prevent short-term repetition
+
+2. **Soup**:
+   - After main dish is drawn, look up the weight table by main dish's `protein` group
+   - Weight = 0 → this soup is forbidden for this main
+   - Higher weight → higher probability of being drawn
+   - Example: fish main dish ⇒ weight table forbids fish soup and crustacean seafood soup, so no duplicate types
+
+3. **Stir-fry**:
+   - Automatically draws two dishes
+   - Requires the two dishes have different `veg` groups
+   - Prevents: two eggplant dishes in the same meal
+
+4. **Cold Dish**:
+   - Draw one randomly
 
 ## Seasonal rules
 
